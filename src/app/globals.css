@@ -1,0 +1,690 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ADIYOGI TECH VENTURES - DESIGN SYSTEM
+   Palette: deep navy void, brand teal, cyan and pale aqua
+   Brand colours are sampled from the Adiyogi Tech Ventures logo artwork.
+   ============================================================ */
+
+@theme {
+  /* Base - the deep navy void before creation */
+  --color-void: #04070e;
+  --color-abyss: #060b16;
+  --color-night: #09121f;
+  --color-dusk: #0f1c30;
+  --color-slate-veil: #17283f;
+
+  /* Accent - pale aqua, the light off the mark */
+  --color-accent-200: #eafbf9;
+  --color-accent-300: #c9f4ef;
+  --color-accent-400: #93e7e0;
+  --color-accent-500: #6fd9d0;
+
+  /* Vibhuti - sacred ash, our text tones */
+  --color-ash-50: #f7f7fa;
+  --color-ash-100: #ececf2;
+  --color-ash-200: #d3d4e0;
+  --color-ash-300: #a8aac0;
+  --color-ash-400: #7b7e99;
+  --color-ash-500: #585b72;
+
+  /* Brand - sampled directly from the supplied logo artwork.
+     The mark runs bright aqua at the arrow tip down to deep navy in the A. */
+  --color-brand-50: #eafbf9;
+  --color-brand-100: #c9f4ef;
+  --color-brand-200: #93e7e0;
+  --color-brand-300: #59d7cd;
+  --color-brand-400: #34bbb6;
+  --color-brand-500: #168da1;
+  --color-brand-600: #186388;
+  --color-brand-700: #15376b;
+  --color-brand-800: #102a52;
+  --color-brand-900: #081e2a;
+
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-xl2: 1.25rem;
+  --radius-xl3: 1.75rem;
+
+  --ease-divine: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Root ---------- */
+
+:root {
+  color-scheme: dark;
+  --header-h: 4.5rem;
+  --glow-brand: 0 0 60px -12px rgba(52, 187, 182, 0.55);
+  --glow-accent: 0 0 40px -8px rgba(147, 231, 224, 0.4);
+}
+
+* {
+  border-color: rgb(255 255 255 / 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-ash-200);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: rgba(52, 187, 182, 0.28);
+  color: var(--color-brand-100);
+}
+
+/* Focus ring - visible, accessible, on-brand */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(52, 187, 182, 0.5),
+    rgba(147, 231, 224, 0.3)
+  );
+  border-radius: 999px;
+  border: 3px solid var(--color-abyss);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(52, 187, 182, 0.8),
+    rgba(147, 231, 224, 0.5)
+  );
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.text-sacred {
+  background: linear-gradient(
+    103deg,
+    #eafbf9 0%,
+    #59d7cd 28%,
+    #168da1 52%,
+    #93e7e0 76%,
+    #eafbf9 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sacred-shift 9s var(--ease-soft) infinite;
+}
+
+@keyframes sacred-shift {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 110% center;
+  }
+}
+
+.text-ember {
+  background: linear-gradient(180deg, #f7f7fa 8%, #a8aac0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-brand-300);
+}
+
+/* ============================================================
+   SURFACES - layered glass, lit from within
+   ============================================================ */
+
+.glass {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(255, 255, 255, 0.018) 45%,
+    rgba(255, 255, 255, 0.008) 100%
+  );
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.25),
+    0 20px 50px -24px rgba(0, 0, 0, 0.9);
+}
+
+.glass-strong {
+  background: linear-gradient(
+    155deg,
+    rgba(18, 22, 40, 0.88) 0%,
+    rgba(7, 9, 18, 0.92) 100%
+  );
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Card with an animated conic halo on hover */
+.halo-card {
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform 0.6s var(--ease-divine),
+    border-color 0.4s var(--ease-soft);
+}
+
+.halo-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--halo-angle, 0deg),
+    transparent 0deg,
+    rgba(52, 187, 182, 0.65) 60deg,
+    rgba(147, 231, 224, 0.5) 110deg,
+    transparent 190deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-soft);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.halo-card:hover::before {
+  opacity: 1;
+  animation: halo-spin 4s linear infinite;
+}
+
+@property --halo-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes halo-spin {
+  to {
+    --halo-angle: 360deg;
+  }
+}
+
+.halo-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Cursor-tracking spotlight (position fed by JS custom props) */
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(52, 187, 182, 0.11),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-soft);
+  pointer-events: none;
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   DIVINE BACKGROUND LAYERS
+   ============================================================ */
+
+/* Film grain - the "realistic" texture that kills digital flatness */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-drift 8s steps(6) infinite;
+  will-change: transform;
+}
+
+@keyframes grain-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  16% {
+    transform: translate(-2%, -3%);
+  }
+  33% {
+    transform: translate(-4%, 2%);
+  }
+  50% {
+    transform: translate(2%, -4%);
+  }
+  66% {
+    transform: translate(-3%, 3%);
+  }
+  83% {
+    transform: translate(3%, 1%);
+  }
+}
+
+/* Aurora - slow breathing colour fields */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform, opacity;
+}
+
+@keyframes breathe-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(6%, -8%, 0) scale(1.18);
+    opacity: 0.78;
+  }
+}
+
+@keyframes breathe-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate3d(-8%, 6%, 0) scale(0.92);
+    opacity: 0.66;
+  }
+}
+
+@keyframes breathe-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.34;
+  }
+  50% {
+    transform: translate3d(5%, 7%, 0) scale(1.22);
+    opacity: 0.58;
+  }
+}
+
+.breathe-a {
+  animation: breathe-a 19s ease-in-out infinite;
+}
+.breathe-b {
+  animation: breathe-b 24s ease-in-out infinite;
+}
+.breathe-c {
+  animation: breathe-c 29s ease-in-out infinite;
+}
+
+/* Slow sacred rotation for yantra / mandala geometry */
+@keyframes yantra-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes yantra-rotate-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.yantra-slow {
+  animation: yantra-rotate 150s linear infinite;
+  transform-origin: center;
+}
+.yantra-mid {
+  animation: yantra-rotate-rev 95s linear infinite;
+  transform-origin: center;
+}
+.yantra-fast {
+  animation: yantra-rotate 60s linear infinite;
+  transform-origin: center;
+}
+
+/* Pulsing halo behind the mark */
+@keyframes aura-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+}
+.aura-pulse {
+  animation: aura-pulse 6s ease-in-out infinite;
+}
+
+/* Diya flame flicker */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scaleY(1) translateY(0);
+  }
+  25% {
+    opacity: 1;
+    transform: scaleY(1.08) translateY(-1px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(0.95) translateY(1px);
+  }
+  75% {
+    opacity: 0.95;
+    transform: scaleY(1.04) translateY(-0.5px);
+  }
+}
+.flicker {
+  animation: flicker 3.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Divider that glows in the middle like a thread of light */
+.thread-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(52, 187, 182, 0.45) 30%,
+    rgba(147, 231, 224, 0.6) 50%,
+    rgba(52, 187, 182, 0.45) 70%,
+    transparent
+  );
+}
+
+/* ============================================================
+   INTERACTIVE
+   ============================================================ */
+
+.btn-sacred {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #168da1 0%, #186388 55%, #15376b 100%);
+  box-shadow:
+    0 1px 0 0 rgba(201, 244, 239, 0.4) inset,
+    0 10px 34px -10px rgba(52, 187, 182, 0.75);
+  transition:
+    transform 0.35s var(--ease-divine),
+    box-shadow 0.35s var(--ease-soft);
+}
+
+.btn-sacred:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 0 rgba(201, 244, 239, 0.55) inset,
+    0 16px 44px -10px rgba(52, 187, 182, 0.9);
+}
+
+.btn-sacred:active {
+  transform: translateY(0);
+}
+
+/* Light sweep across the button */
+.btn-sacred::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s var(--ease-soft);
+}
+
+.btn-sacred:hover::after {
+  left: 145%;
+}
+
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.028);
+  transition:
+    border-color 0.35s var(--ease-soft),
+    background-color 0.35s var(--ease-soft),
+    transform 0.35s var(--ease-divine);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(52, 187, 182, 0.5);
+  background: rgba(52, 187, 182, 0.07);
+  transform: translateY(-2px);
+}
+
+/* Underline that grows from the left */
+.link-grow {
+  position: relative;
+}
+.link-grow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-brand-400), var(--color-accent-400));
+  transition: width 0.4s var(--ease-divine);
+}
+.link-grow:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   SCROLL REVEAL (IntersectionObserver toggles .is-visible)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s var(--ease-divine),
+    transform 0.9s var(--ease-divine);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Marquee for the tech ribbon */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .grain::before {
+    display: none;
+  }
+}
+
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Hero entrance - runs once on load, above the fold so no observer needed */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* ============================================================
+   DAMRU CURSOR
+   The class is added by CursorAura AFTER mount, so a failed or
+   disabled JS bundle always leaves the native cursor intact.
+   ============================================================ */
+
+.has-damru-cursor,
+.has-damru-cursor * {
+  cursor: none;
+}
+
+/* Text entry still needs a real caret - precision beats decoration here. */
+.has-damru-cursor :is(input, textarea, [contenteditable="true"]) {
+  cursor: text;
+}
+
+/* Swing the striker beads around the drum waist, not the icon corner. */
+.damru-cursor #damru-beads {
+  transform-box: view-box;
+  transform-origin: 16px 19.6px;
+  transition: transform 0.05s linear;
+}
+
+/* Strike: the body squashes for a beat on pointer-down. */
+.damru-cursor.is-struck svg {
+  animation: damru-strike 0.26s var(--ease-divine);
+}
+
+@keyframes damru-strike {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.84) rotate(-6deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- Progress rider ---------- */
+
+/* A gentle bob so the trishul feels carried by the line, not pinned to it. */
+@keyframes rider-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.5px) rotate(2.5deg);
+  }
+}
+
+.progress-rider {
+  animation: rider-bob 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-rider {
+    animation: none;
+  }
+}
