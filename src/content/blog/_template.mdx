@@ -1,0 +1,56 @@
+---
+# Copy this file to a new one named after the slug you want, e.g.
+# choosing-a-cms.mdx becomes /blog/choosing-a-cms.
+#
+# Files whose name starts with an underscore are skipped, so this template
+# never appears on the site. Frontmatter is validated at build time by
+# src/lib/blog.ts - a missing or malformed field fails the build with the file
+# name and the field, rather than shipping "undefined" onto a page.
+
+# Required.
+title: The post title, written as it should appear as the H1
+description: One or two sentences. Used on the card, in <meta description>, in the RSS item and in link previews, so write it for a stranger.
+date: 2026-01-01
+author: Your Name
+category: Engineering
+
+# Optional. Shown below with their defaults.
+# updated: 2026-02-01        # set when a post is meaningfully revised
+tags: [Next.js, Performance]
+accent: "#34bbb6"            # hex, drives the card wash and category pill
+published: true              # false keeps the file in the repo, off the site
+featured: false              # true pins it to the top of the listing
+---
+
+Open with the point. The first paragraph is what someone reads before deciding
+whether to keep going, so put the conclusion there rather than building up to it.
+
+## Headings start at H2
+
+The H1 is the post title, rendered by the page from the `title` above — do not
+write another one here.
+
+Body copy supports the usual Markdown: **bold**, `inline code`, [links](/contact)
+(internal ones route client-side automatically), lists, and tables via GitHub
+Flavored Markdown.
+
+- Bullets render with a brand-teal dot
+- Ordered lists use teal markers
+- Long tables scroll inside their own container instead of stretching the page
+
+```ts
+// Fenced code blocks render in a glass panel and scroll horizontally.
+export const example = (n: number) => n * 2;
+```
+
+> A blockquote is set in the display serif, for a line worth slowing down on.
+
+<Callout>
+  Callout is the one custom component available in a post. Use it for an aside
+  the reader should not skim past.
+</Callout>
+
+Images work with standard Markdown syntax and are served through next/image:
+put the file in `public/blog/` and reference it as `/blog/your-image.jpg`.
+Always write real alt text — it is read aloud, and it is what shows if the
+image fails to load.

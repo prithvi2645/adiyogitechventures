@@ -51,6 +51,7 @@ export const site = {
     { label: "Work", href: "/work" },
     { label: "Process", href: "/#process" },
     { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
 

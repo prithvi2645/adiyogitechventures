@@ -55,9 +55,39 @@ All copy lives in `src/content/` as typed TypeScript. No component edits needed.
 | `testimonials.ts` | Client quotes |
 | `process.ts` | The six-step process timeline |
 | `faq.ts` | FAQ questions and answers (also feeds FAQ schema for Google) |
+| `blog/*.mdx` | Blog posts, one MDX file each — see **Writing a blog post** below |
 
-Adding a service or project automatically creates its detail page, adds it to
-the listing page, the footer, and `sitemap.xml`. Nothing else to wire up.
+Adding a service, project or blog post automatically creates its detail page,
+adds it to the listing page, the footer, and `sitemap.xml`. Nothing else to wire
+up.
+
+### Writing a blog post
+
+Copy `src/content/blog/_template.mdx` to `src/content/blog/<slug>.mdx`. The file
+name is the URL: `choosing-a-cms.mdx` serves at `/blog/choosing-a-cms`.
+
+Frontmatter is validated at build time by `src/lib/blog.ts`. A missing or
+malformed field **fails the build** naming the file and the field, rather than
+rendering `undefined` onto a live page. Required: `title`, `description`, `date`
+(YYYY-MM-DD, quoted or not), `author`, `category`. Optional: `updated`, `tags`,
+`accent`, `published`, `featured`.
+
+- `published: false` keeps a draft in the repo and off the site entirely — no
+  page, no listing entry, no sitemap or feed entry.
+- `featured: true` pins a post to the top of the listing; otherwise newest first.
+- Files starting with `_` are skipped, which is how the template stays unpublished.
+
+Post bodies are MDX with GitHub Flavored Markdown, so tables and strikethrough
+work. Headings start at H2 — the H1 is the post title, rendered by the page.
+Body elements are styled in `src/components/blog/MdxContent.tsx`, which also
+exposes one custom component, `<Callout>`, for an aside. Internal links route
+through `next/link` automatically; external ones get `target="_blank"` and
+`rel="noopener noreferrer"`. Images go in `public/blog/` and are served through
+`next/image`.
+
+Reading time is computed at ~200 wpm, skipping fenced code blocks. Each post
+emits `BlogPosting` JSON-LD and article OpenGraph tags, and the feed at
+`/blog/rss.xml` is generated statically alongside the pages.
 
 ### Brand assets
 
@@ -198,12 +228,21 @@ src/
   instrumentation-client.ts Browser Sentry bootstrap (lazy-loaded)
   components/
     background/        DivineBackground, CosmicCanvas (particles), Yantra/Trishul SVG
+    blog/              MdxContent - element map and styling for post bodies
     layout/            Header, Footer, Logo
     sections/          Page sections - Hero, Services, Process, Work, FAQ, Cta...
     ui/                Primitives - Reveal, Spotlight, Section, Button, Counter
   content/             All editable copy
-  lib/                 utils, zod schemas, rate limiter
+    blog/              Blog posts as MDX, one file per post
+  lib/                 utils, zod schemas, rate limiter, blog loader
 ```
+
+**The blog.** Posts are MDX files read from disk at build time by
+`src/lib/blog.ts` and rendered with `next-mdx-remote/rsc`, so a post is a server
+component with no client JS beyond what the rest of the site already ships.
+Frontmatter is parsed through a zod schema rather than trusted. `/blog/[slug]`
+sets `dynamicParams = false`, so an unknown slug is a statically served 404 —
+the same choice `/work/[slug]` makes.
 
 **The background.** `DivineBackground` is a fixed six-layer composition: a radial
 base, four breathing aurora fields, a rotating yantra, a horizon glow, a canvas
@@ -250,6 +289,7 @@ held and how to refill it:
 | `src/content/projects.ts` | Eight sample case studies with invented clients, outcomes and metrics | Homepage "Selected work"; `/work` shows an empty state; no `/work/[slug]` pages, none in `sitemap.xml` |
 | `src/content/testimonials.ts` | Sample quotes attributed to "Sample Name" | Homepage "In their words" |
 | `stats` in `src/content/site.ts` | `60+ products shipped`, `98/100 Lighthouse`, `12 countries served`, `4.9/5 client rating` | Hero stats strip; About "By the numbers" |
+| `src/content/blog/` | Never held posts; the route shipped with the template only | `/blog` shows an empty state; no `/blog/[slug]` pages, none in `sitemap.xml` or the feed |
 
 A hardcoded five-star **"Rated 4.9 by our clients"** badge was also removed from
 the hero trust row. The two claims left there — 30 days of free support, 100%
@@ -313,7 +353,9 @@ Roughly in order of return on effort:
 
 1. **CMS** — move `src/content/*` into Sanity so the client edits copy without a
    deploy. The content files are already shaped like CMS documents.
-2. **Blog** — an `/blog` route with MDX. Strongest long-term lever for organic
-   search traffic.
-3. **Booking** — embed Cal.com on `/contact` so prospects book the call directly.
-4. **Multi-language** — `next-intl` if you want Hindi or Kannada versions.
+2. **Booking** — embed Cal.com on `/contact` so prospects book the call directly.
+3. **Multi-language** — `next-intl` if you want Hindi or Kannada versions.
+
+The **blog** that used to head this list is built — `/blog`, `/blog/[slug]` and
+an RSS feed, driven by MDX files. It ships with no posts; see **Writing a blog
+post** above.
