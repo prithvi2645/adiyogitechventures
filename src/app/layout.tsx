@@ -50,7 +50,10 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   publisher: site.name,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": `${site.url}/blog/rss.xml` },
+  },
   openGraph: {
     type: "website",
     locale: site.locale,
