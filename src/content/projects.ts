@@ -1,13 +1,16 @@
 /**
  * Case studies.
  *
- * Deliberately empty. This file previously held eight illustrative samples
- * written to demonstrate the layout, with invented client names, invented
- * outcomes and invented metrics. They were removed before the repository was
- * made public: presented on a live site or read out of a public repo, they
- * would have read as real client work.
+ * This file once held eight illustrative samples written to demonstrate the
+ * layout, with invented client names, invented outcomes and invented metrics.
+ * They were removed before the repository was made public: presented on a live
+ * site or read out of a public repo, they would have read as real client work.
  *
- * To publish real work, add entries below - with the client's written
+ * It currently holds one entry, and that entry is an in-house build rather than
+ * client work - see `internal` below for how it is labelled. There are still no
+ * client case studies here.
+ *
+ * To publish client work, add entries below - with the client's written
  * permission and numbers you can substantiate. Everything else wires itself up:
  * the /work listing, the /work/[slug] detail page, the homepage section and
  * sitemap.xml all read from this array, and the homepage and listing sections
@@ -55,7 +58,30 @@ export type Project = {
   featured: boolean;
 };
 
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    slug: "gst-ledger-invoice-suite",
+    title: "GST Ledger & Invoice Suite",
+    client: "Adiyogi Tech Ventures",
+    category: "Web application",
+    year: "2026",
+    internal: true,
+    summary:
+      "A GST ledger and invoicing tool we built to learn the domain properly. It is a working prototype, and we run our own invoicing through it.",
+    challenge:
+      "Reading how GST invoicing is supposed to work is not the same as implementing it. We wanted the whole workflow in our hands - how a ledger actually balances, where the awkward cases in tax handling sit, what the existing tools make harder than it needs to be. The fastest way to learn that was to build one and then be the person who has to use it every month.",
+    approach:
+      "Built on Google AI Studio as a single web application covering the ledger and invoice generation. The scope was deliberately narrow: the parts we needed to understand, built properly, rather than a long feature list built shallowly. Using it ourselves kept the feedback loop short - anything awkward surfaced within a week rather than in a support ticket.",
+    result:
+      "A working prototype we use for our own invoicing. It is not a product, and it is not sold or supported. It is here because it is honest evidence of how we approach an unfamiliar domain: build the smallest real thing, live with it, and learn what the documentation does not tell you.",
+    services: ["Web Application Development"],
+    stack: ["Google AI Studio"],
+    liveUrl: "https://adiyogitechventures-gst.ai.studio/",
+    metrics: [],
+    accent: "#59d7cd",
+    featured: false,
+  },
+];
 
 export const getProject = (slug: string) =>
   projects.find((p) => p.slug === slug);
