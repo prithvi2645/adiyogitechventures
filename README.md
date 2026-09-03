@@ -1,11 +1,13 @@
 # Adiyogi Tech Ventures
 
-Marketing and lead-generation website for a web & app development studio.
-Built with [Next.js 15](https://nextjs.org) (App Router), TypeScript and
-Tailwind CSS v4.
+Marketing and lead-generation website for Adiyogi Tech Ventures, a web & app
+development studio — built to explain the services on offer and turn
+visitors into qualified enquiries via the contact form.
 
-**Live site:** [adiyogitechventures.vercel.app
-](https://adiyogitechventures.vercel.app)
+**Live site:** [adiyogitechventures.vercel.app](https://adiyogitechventures.vercel.app)
+
+**Stack:** Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Resend
+(contact form email) · Sentry (error monitoring) · Vercel (hosting)
 
 ## Quick start
 
@@ -46,10 +48,3 @@ content file is empty.
 Import the repo at [vercel.com/new](https://vercel.com/new), add the
 environment variables from `.env.example`, and deploy — Vercel detects
 Next.js automatically. Every push to `main` redeploys.
-
-## Stack notes
-
-Sentry and Vercel Analytics are both fully inactive until configured — an
-unconfigured build ships without them. The custom cursor and background
-animation respect `prefers-reduced-motion` and are disabled for touch
-pointers where relevant.
