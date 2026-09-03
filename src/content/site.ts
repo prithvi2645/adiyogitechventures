@@ -5,7 +5,7 @@
 export type Stat = { value: string; label: string; suffix?: string };
 
 /** The canonical origin, used as `metadataBase` and by sitemap.xml and the feed. */
-const FALLBACK_URL = "https://adiyogitechventures.com";
+const FALLBACK_URL = "https://adiyogitechventures.vercel.app";
 
 /**
  * Reads NEXT_PUBLIC_SITE_URL defensively.

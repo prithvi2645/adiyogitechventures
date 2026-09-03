@@ -65,8 +65,8 @@ export default function HeroVisual() {
             <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
             <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-            <div className="ml-3 flex-1 rounded-md bg-white/[0.05] px-3 py-1 text-[10px] text-ash-500">
-              adiyogitechventures.com
+            <div className="ml-3 flex-1 truncate rounded-md bg-white/[0.05] px-3 py-1 text-[10px] text-ash-500">
+              adiyogitechventures.vercel.app
             </div>
           </div>
 
