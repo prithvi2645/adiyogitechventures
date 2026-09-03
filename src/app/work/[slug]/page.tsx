@@ -47,16 +47,28 @@ export default async function ProjectPage({ params }: Params) {
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
 
-  const sections = [
-    { heading: "The challenge", body: project.challenge },
-    { heading: "Our approach", body: project.approach },
-    { heading: "The result", body: project.result },
-  ];
+  // An in-house build has no client brief, so the client-engagement framing
+  // does not apply to it.
+  const sections = project.internal
+    ? [
+        { heading: "Why we built it", body: project.challenge },
+        { heading: "How we built it", body: project.approach },
+        { heading: "Where it stands", body: project.result },
+      ]
+    : [
+        { heading: "The challenge", body: project.challenge },
+        { heading: "Our approach", body: project.approach },
+        { heading: "The result", body: project.result },
+      ];
 
   return (
     <>
       <PageHero
-        eyebrow={project.category}
+        eyebrow={
+          project.internal
+            ? `${project.category} - in-house build`
+            : project.category
+        }
         title={project.title}
         description={project.summary}
         breadcrumbs={[
@@ -120,7 +132,7 @@ export default async function ProjectPage({ params }: Params) {
                   <dl className="space-y-6 text-sm">
                     <div>
                       <dt className="text-xs uppercase tracking-wider text-ash-500">
-                        Client
+                        {project.internal ? "Built by" : "Client"}
                       </dt>
                       <dd className="mt-1 text-ash-100">{project.client}</dd>
                     </div>

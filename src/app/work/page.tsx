@@ -71,14 +71,21 @@ export default function WorkPage() {
                     className="relative z-10 flex h-full flex-col p-8"
                   >
                     <div className="mb-5 flex items-start justify-between gap-4">
-                      <span
-                        className="rounded-full px-3 py-1 text-[11px] font-medium"
-                        style={{
-                          backgroundColor: `${project.accent}1a`,
-                          color: project.accent,
-                        }}
-                      >
-                        {project.category}
+                      <span className="flex flex-wrap items-center gap-2">
+                        <span
+                          className="rounded-full px-3 py-1 text-[11px] font-medium"
+                          style={{
+                            backgroundColor: `${project.accent}1a`,
+                            color: project.accent,
+                          }}
+                        >
+                          {project.category}
+                        </span>
+                        {project.internal ? (
+                          <span className="rounded-full border border-white/[0.09] px-3 py-1 text-[11px] text-ash-400">
+                            In-house build
+                          </span>
+                        ) : null}
                       </span>
                       <span className="text-xs text-ash-500">{project.year}</span>
                     </div>

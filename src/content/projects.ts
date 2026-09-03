@@ -38,6 +38,17 @@ export type Project = {
    * this with estimates to make the layout look complete.
    */
   metrics: { label: string; value: string }[];
+  /**
+   * Marks a project we built for ourselves rather than for a client.
+   *
+   * An in-house build sitting unlabelled among client case studies implies a
+   * client engagement that never happened, so it is labelled on both the card
+   * and the detail page, and the sidebar reads "Built by" instead of "Client".
+   * The three body sections are also retitled: a self-initiated product has no
+   * client brief, so "The challenge / Our approach / The result" would be the
+   * wrong frame for it.
+   */
+  internal?: boolean;
   /** Hex colour used for the card wash and metric figures, e.g. "#34BBB6". */
   accent: string;
   /** Featured projects appear in the homepage "Selected work" section. */
