@@ -30,19 +30,6 @@ export default function Footer() {
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-ash-400">
               {site.description}
             </p>
-            <div className="mt-7 flex flex-wrap gap-2">
-              {site.social.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-white/10 px-4 py-2 text-xs text-ash-300 transition-colors hover:border-brand-500/50 hover:text-brand-300"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>

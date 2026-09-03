@@ -72,13 +72,6 @@ export const site = {
     hours: "Mon - Sat, 10:00 - 19:00 IST",
   },
 
-  social: [
-    { label: "LinkedIn", href: "https://linkedin.com/company/adiyogitechventures" },
-    { label: "Instagram", href: "https://instagram.com/adiyogitechventures" },
-    { label: "GitHub", href: "https://github.com/adiyogitechventures" },
-    { label: "X", href: "https://x.com/adiyogitech" },
-  ],
-
   nav: [
     { label: "Services", href: "/services" },
     { label: "Work", href: "/work" },

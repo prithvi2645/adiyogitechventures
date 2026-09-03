@@ -91,7 +91,6 @@ const organizationSchema = {
     addressCountry: "IN",
   },
   areaServed: "Worldwide",
-  sameAs: site.social.map((s) => s.href),
   knowsAbout: [
     "Web Development",
     "Mobile App Development",
