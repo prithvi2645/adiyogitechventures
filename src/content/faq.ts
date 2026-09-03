@@ -9,7 +9,7 @@ export const faqs: Faq[] = [
   {
     question: "How long will my project take?",
     answer:
-      "Websites usually run three to six weeks. Web applications run six to fourteen weeks. Mobile apps run eight to sixteen weeks, plus one to two weeks for app store review. You get a week-by-week schedule before we start, and a live staging link so you can see progress at any time.",
+      "It depends on scope, and we would rather not publish a figure that turns out to be wrong for your project - a number quoted before we understand what you need is either padded or quietly leaves things out. Once we have scoped the work you get a written schedule with dates and milestones, agreed before anything starts. During the build you get a live staging link, so you can see progress for yourself rather than take our word for it.",
   },
   {
     question: "Will I be able to update the content myself?",

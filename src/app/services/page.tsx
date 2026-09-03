@@ -88,14 +88,6 @@ export default function ServicesPage() {
                             </dd>
                           </div>
                           <div>
-                            <dt className="text-xs uppercase tracking-wider text-ash-500">
-                              Typical timeline
-                            </dt>
-                            <dd className="mt-1 text-ash-200">
-                              {service.timeline}
-                            </dd>
-                          </div>
-                          <div>
                             <dt className="mb-2 text-xs uppercase tracking-wider text-ash-500">
                               Stack
                             </dt>

@@ -2,27 +2,30 @@
 
 import { useEffect, useRef } from "react";
 
-type Particle = {
+type Wisp = {
   x: number;
   y: number;
   /** 0 = far background, 1 = close foreground. Drives size, speed and alpha. */
   depth: number;
-  radius: number;
-  speed: number;
+  maxSize: number;
+  rise: number;
   drift: number;
   phase: number;
-  alpha: number;
-  hue: number;
+  life: number; // 0-1, current position in this wisp's life
+  lifeSpeed: number;
+  alphaPeak: number;
+  warmth: number;
 };
 
-const EMBER_HUES = [178, 186, 192, 170, 199];
-
 /**
- * Ambient particle field: slow-rising motes with depth parallax, plus a
- * faint starfield. Rendered with additive blending so overlapping particles
- * bloom rather than flatten - that is what sells the "lit from within" look.
+ * Ambient rising mist: soft, blurred blooms of light drifting slowly
+ * upward and dispersing, like incense smoke curling in still air. Purely
+ * abstract - a radial gradient with no discrete outline - so it never
+ * reads as a stamped-on shape the way a drawn icon can at small sizes.
+ * Rendered with normal compositing so overlapping wisps stay hazy instead
+ * of blowing out to solid white the way additive blending would.
  */
-export default function CosmicCanvas() {
+export default function SmokeWisps() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -39,7 +42,7 @@ export default function CosmicCanvas() {
     let width = 0;
     let height = 0;
     let dpr = 1;
-    let particles: Particle[] = [];
+    let wisps: Wisp[] = [];
     let raf = 0;
     let running = true;
 
@@ -47,23 +50,26 @@ export default function CosmicCanvas() {
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
 
     const density = () => {
-      // Scale count with area, but keep a hard ceiling so low-end phones cope.
+      // These are large, soft blooms, not a field of specks - a handful
+      // is enough to fill the frame without ever feeling busy.
       const area = width * height;
-      return Math.min(150, Math.max(36, Math.round(area / 16000)));
+      return Math.min(16, Math.max(6, Math.round(area / 130000)));
     };
 
-    const makeParticle = (seeded = false): Particle => {
+    const makeWisp = (seeded = false): Wisp => {
       const depth = Math.random();
       return {
         x: Math.random() * width,
         y: seeded ? Math.random() * height : height + Math.random() * 120,
         depth,
-        radius: 0.5 + depth * 2.1,
-        speed: 0.12 + depth * 0.5,
-        drift: 0.25 + Math.random() * 0.9,
+        maxSize: 70 + depth * 170,
+        rise: 0.1 + depth * 0.28,
+        drift: 0.15 + Math.random() * 0.5,
         phase: Math.random() * Math.PI * 2,
-        alpha: 0.14 + depth * 0.5,
-        hue: EMBER_HUES[Math.floor(Math.random() * EMBER_HUES.length)],
+        life: seeded ? Math.random() : 0,
+        lifeSpeed: 0.00006 + Math.random() * 0.00005,
+        alphaPeak: 0.05 + depth * 0.08,
+        warmth: Math.random(),
       };
     };
 
@@ -75,32 +81,36 @@ export default function CosmicCanvas() {
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      particles = Array.from({ length: density() }, () => makeParticle(true));
+      wisps = Array.from({ length: density() }, () => makeWisp(true));
     };
 
-    const drawParticle = (p: Particle, t: number) => {
-      const sway = Math.sin(t * 0.0006 * p.drift + p.phase) * (8 + p.depth * 22);
-      const px = p.x + sway + pointer.x * (6 + p.depth * 26);
-      const py = p.y + pointer.y * (4 + p.depth * 16);
+    const drawWisp = (w: Wisp, t: number) => {
+      // Sway grows with life, as though the mist were dispersing outward
+      // the higher it climbs.
+      const sway =
+        Math.sin(t * 0.00028 * w.drift + w.phase) * (14 + w.life * 46);
+      const px = w.x + sway + pointer.x * (4 + w.depth * 14);
+      const py = w.y + pointer.y * (2 + w.depth * 8);
 
-      // Twinkle: a slow sine on alpha keeps the field from looking static.
-      const twinkle = 0.72 + 0.28 * Math.sin(t * 0.0011 + p.phase * 2.3);
-      const a = p.alpha * twinkle;
+      // Bell-shaped envelope: fades in, holds, fades out across its life.
+      const envelope = Math.sin(Math.PI * w.life);
+      const size = w.maxSize * (0.35 + 0.65 * Math.sin((Math.PI / 2) * w.life));
+      const a = w.alphaPeak * envelope;
 
-      const glow = ctx.createRadialGradient(px, py, 0, px, py, p.radius * 6);
-      glow.addColorStop(0, `hsla(${p.hue}, 96%, 72%, ${a})`);
-      glow.addColorStop(0.35, `hsla(${p.hue}, 92%, 58%, ${a * 0.42})`);
-      glow.addColorStop(1, `hsla(${p.hue}, 90%, 50%, 0)`);
+      if (a <= 0.002 || size <= 1) return;
+
+      const r = 246 - w.warmth * 8;
+      const g = 251 - w.warmth * 14;
+      const b = 250 - w.warmth * 26;
+
+      const glow = ctx.createRadialGradient(px, py, 0, px, py, size);
+      glow.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${a})`);
+      glow.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${a * 0.4})`);
+      glow.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
 
       ctx.fillStyle = glow;
       ctx.beginPath();
-      ctx.arc(px, py, p.radius * 6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Hot core
-      ctx.fillStyle = `hsla(${p.hue + 12}, 100%, 88%, ${a * 0.95})`;
-      ctx.beginPath();
-      ctx.arc(px, py, p.radius * 0.55, 0, Math.PI * 2);
+      ctx.arc(px, py, size, 0, Math.PI * 2);
       ctx.fill();
     };
 
@@ -111,18 +121,16 @@ export default function CosmicCanvas() {
       pointer.y += (pointer.ty - pointer.y) * 0.045;
 
       ctx.clearRect(0, 0, width, height);
-      ctx.globalCompositeOperation = "lighter";
 
-      for (const p of particles) {
-        p.y -= p.speed;
-        if (p.y < -40) {
-          Object.assign(p, makeParticle());
-          p.y = height + 20;
+      for (const w of wisps) {
+        w.y -= w.rise;
+        w.life += w.lifeSpeed * 16.7; // roughly per-frame at 60fps, dt-agnostic enough here
+        if (w.life >= 1 || w.y < -w.maxSize) {
+          Object.assign(w, makeWisp());
         }
-        drawParticle(p, t);
+        drawWisp(w, t);
       }
 
-      ctx.globalCompositeOperation = "source-over";
       raf = requestAnimationFrame(frame);
     };
 
@@ -146,9 +154,7 @@ export default function CosmicCanvas() {
 
     if (reduceMotion) {
       // Draw one static frame - the texture without the movement.
-      ctx.globalCompositeOperation = "lighter";
-      for (const p of particles) drawParticle(p, 0);
-      ctx.globalCompositeOperation = "source-over";
+      for (const w of wisps) drawWisp(w, 0);
     } else {
       raf = requestAnimationFrame(frame);
       window.addEventListener("pointermove", onPointerMove, { passive: true });

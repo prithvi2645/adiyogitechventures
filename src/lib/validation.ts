@@ -8,13 +8,6 @@ export const budgetOptions = [
   "Not sure yet",
 ] as const;
 
-export const timelineOptions = [
-  "ASAP",
-  "1 - 2 months",
-  "3 - 6 months",
-  "Just exploring",
-] as const;
-
 export const serviceOptions = [
   "Website Design & Development",
   "Web Application Development",
@@ -47,7 +40,6 @@ export const contactSchema = z.object({
     errorMap: () => ({ message: "Please choose a service" }),
   }),
   budget: z.enum(budgetOptions).optional().or(z.literal("")),
-  timeline: z.enum(timelineOptions).optional().or(z.literal("")),
   message: z
     .string()
     .trim()

@@ -83,6 +83,7 @@ const organizationSchema = {
   url: site.url,
   description: site.description,
   email: site.contact.email,
+  telephone: site.contact.phone,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bengaluru",

@@ -29,11 +29,7 @@ export default function Hero() {
               <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-brand-400 to-brand-700">
                 <Sparkles className="h-3 w-3 text-white" />
               </span>
-              <span className="text-ash-200">
-                Web &amp; app studio
-                <span className="mx-2 text-ash-500">&middot;</span>
-                <span className="text-brand-300">Accepting 2 projects this quarter</span>
-              </span>
+              <span className="text-ash-200">Web &amp; app studio</span>
             </div>
 
             <h1

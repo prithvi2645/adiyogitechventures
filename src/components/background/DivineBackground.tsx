@@ -1,5 +1,7 @@
-import CosmicCanvas from "./CosmicCanvas";
+import AdiyogiFigure from "./AdiyogiFigure";
 import ScrollZoomBackdrop from "./ScrollZoomBackdrop";
+import SmokeWisps from "./SmokeWisps";
+import TrishulDrift from "./TrishulDrift";
 import { Yantra } from "./Yantra";
 
 /**
@@ -10,8 +12,9 @@ import { Yantra } from "./Yantra";
  *   1b. Generated Kailash backdrop, scroll-linked slow zoom
  *   2. Breathing aurora fields - brand teal, cyan and deep navy
  *   3. Sacred geometry - a slowly rotating yantra
+ *   3b. The Adiyogi logo mark, scroll-linked zoom
  *   4. Horizon glow - a rising light at the base of the viewport
- *   5. Ember particle canvas
+ *   5. Rising incense-smoke wisps, plus an occasional drifting trishul
  *   6. Vignette + fine grid + film grain
  */
 export default function DivineBackground() {
@@ -92,6 +95,10 @@ export default function DivineBackground() {
       {/* 3. Sacred geometry */}
       <Yantra className="absolute left-1/2 top-[6%] h-[min(150vh,1500px)] w-[min(150vh,1500px)] -translate-x-1/2 opacity-[0.13] mix-blend-screen" />
 
+      {/* 3b. The Adiyogi form from the logo mark. See AdiyogiFigure for the
+          scroll-linked zoom and why it isn't mix-blend-screen. */}
+      <AdiyogiFigure />
+
       {/* 4. Horizon glow - light rising from below, like dawn over a hill */}
       <div
         className="absolute inset-x-0 bottom-0 h-[45vh]"
@@ -101,8 +108,9 @@ export default function DivineBackground() {
         }}
       />
 
-      {/* 5. Embers */}
-      <CosmicCanvas />
+      {/* 5. Rising smoke wisps, plus a trishul that drifts across now and then */}
+      <SmokeWisps />
+      <TrishulDrift />
 
       {/* 6a. Fine grid - subliminal structure, keeps large areas from feeling empty */}
       <div

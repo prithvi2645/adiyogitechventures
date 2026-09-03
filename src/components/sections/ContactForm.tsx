@@ -7,7 +7,6 @@ import { submitContact } from "@/app/actions";
 import {
   budgetOptions,
   serviceOptions,
-  timelineOptions,
   type ContactState,
 } from "@/lib/validation";
 import { cn } from "@/lib/utils";
@@ -198,23 +197,6 @@ export default function ContactForm() {
                 Prefer not to say
               </option>
               {budgetOptions.map((o) => (
-                <option key={o} value={o} className="bg-night">
-                  {o}
-                </option>
-              ))}
-            </select>
-          </Field>
-
-          <Field label="Timeline" error={err("timeline")}>
-            <select
-              name="timeline"
-              defaultValue=""
-              className={cn(fieldBase, borderFor("timeline"), "cursor-pointer")}
-            >
-              <option value="" className="bg-night">
-                Not decided
-              </option>
-              {timelineOptions.map((o) => (
                 <option key={o} value={o} className="bg-night">
                   {o}
                 </option>

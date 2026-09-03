@@ -192,6 +192,12 @@ export default function Header() {
             >
               {site.contact.email}
             </a>
+            <a
+              href={site.contact.phoneHref}
+              className="block hover:text-brand-300"
+            >
+              {site.contact.phone}
+            </a>
           </div>
         </nav>
       </div>

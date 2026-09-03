@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     heading: "What we collect",
-    body: "When you submit our contact form we collect the name, email address, phone number, company, service interest, budget, timeline and message you provide. Our hosting provider records standard server logs, including IP address and browser type, for security and reliability purposes.",
+    body: "When you submit our contact form we collect the name, email address, phone number, company, service interest, budget and message you provide. Our hosting provider records standard server logs, including IP address and browser type, for security and reliability purposes.",
   },
   {
     heading: "Why we collect it",

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import { Trishul } from "@/components/background/Yantra";
 import { site } from "@/content/site";
@@ -100,6 +100,15 @@ export default function Footer() {
                 >
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                   {site.contact.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.contact.phoneHref}
+                  className="flex items-start gap-3 text-ash-300 transition-colors hover:text-brand-300"
+                >
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+                  {site.contact.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3 text-ash-400">

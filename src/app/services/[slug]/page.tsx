@@ -134,9 +134,6 @@ export default async function ServiceDetailPage({ params }: Params) {
                         <div>
                           <h3 className="font-display text-xl text-ash-100">
                             {step.title}
-                            <span className="ml-2 text-xs not-italic text-ash-500">
-                              {step.duration}
-                            </span>
                           </h3>
                           <p className="mt-1.5 text-sm leading-relaxed text-ash-400">
                             {step.description}
@@ -169,15 +166,6 @@ export default async function ServiceDetailPage({ params }: Params) {
                     </div>
 
                     <div className="thread-divider" />
-
-                    <div>
-                      <dt className="text-xs uppercase tracking-wider text-ash-500">
-                        Timeline
-                      </dt>
-                      <dd className="mt-1 text-lg text-ash-100">
-                        {service.timeline}
-                      </dd>
-                    </div>
 
                     <div>
                       <dt className="mb-2.5 text-xs uppercase tracking-wider text-ash-500">

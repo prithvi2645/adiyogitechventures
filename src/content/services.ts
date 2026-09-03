@@ -7,7 +7,6 @@ export type Service = {
   icon: string;
   deliverables: string[];
   stack: string[];
-  timeline: string;
   /**
    * Optional. Left unset deliberately - we do not publish a number before
    * scoping the work. Set it and the "Starting at" figures reappear on the
@@ -36,7 +35,6 @@ export const services: Service[] = [
       "Core Web Vitals tuned to green",
     ],
     stack: ["Next.js", "React", "Tailwind CSS", "Sanity CMS", "Vercel"],
-    timeline: "3 - 6 weeks",
     outcomes: [
       { label: "Load time", value: "< 1.2s" },
       { label: "Lighthouse", value: "95+" },
@@ -61,7 +59,6 @@ export const services: Service[] = [
       "Automated tests and CI/CD pipeline",
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Stripe", "Redis"],
-    timeline: "6 - 14 weeks",
     outcomes: [
       { label: "Uptime target", value: "99.9%" },
       { label: "Test coverage", value: "80%+" },
@@ -86,7 +83,6 @@ export const services: Service[] = [
       "Crash reporting and release monitoring",
     ],
     stack: ["React Native", "Expo", "TypeScript", "Supabase", "Firebase"],
-    timeline: "8 - 16 weeks",
     outcomes: [
       { label: "Platforms", value: "iOS + Android" },
       { label: "Cold start", value: "< 2s" },
@@ -111,7 +107,6 @@ export const services: Service[] = [
       "Usability testing round",
     ],
     stack: ["Figma", "Framer", "Design Tokens", "Storybook"],
-    timeline: "2 - 5 weeks",
     outcomes: [
       { label: "Accessibility", value: "WCAG AA" },
       { label: "Handoff", value: "Dev-ready" },
@@ -136,7 +131,6 @@ export const services: Service[] = [
       "Sales analytics dashboard",
     ],
     stack: ["Shopify Hydrogen", "Next.js Commerce", "Razorpay", "Stripe"],
-    timeline: "4 - 10 weeks",
     outcomes: [
       { label: "Checkout steps", value: "2" },
       { label: "Payment modes", value: "UPI + Cards" },
@@ -161,10 +155,8 @@ export const services: Service[] = [
       "Monthly refresh cycle to beat ad fatigue",
     ],
     stack: ["Adobe Firefly", "Midjourney", "Figma", "Meta Ads", "Google Ads"],
-    timeline: "1 - 3 weeks",
     outcomes: [
       { label: "Variants / cycle", value: "30+" },
-      { label: "Turnaround", value: "3 - 5 days" },
       { label: "Human reviewed", value: "100%" },
     ],
   },
@@ -186,7 +178,6 @@ export const services: Service[] = [
       "Source project files handed over",
     ],
     stack: ["Runway", "Veo", "ElevenLabs", "Premiere Pro", "After Effects"],
-    timeline: "2 - 4 weeks",
     outcomes: [
       { label: "Typical length", value: "30 - 90s" },
       { label: "Aspect ratios", value: "3" },
@@ -211,7 +202,6 @@ export const services: Service[] = [
       "Priority support channel",
     ],
     stack: ["Sentry", "Vercel Analytics", "Better Stack", "GitHub Actions"],
-    timeline: "Ongoing",
     outcomes: [
       { label: "Response time", value: "< 4 hrs" },
       { label: "Monitoring", value: "24/7" },

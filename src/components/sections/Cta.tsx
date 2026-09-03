@@ -39,8 +39,8 @@ export default function Cta() {
 
               <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-ash-300">
                 Tell us what you are building. We will reply within one working
-                day with honest thoughts, a rough timeline, and a real number -
-                no obligation, no sales theatre.
+                day with honest thoughts, a clear scope, and a real number - no
+                obligation, no sales theatre.
               </p>
 
               <div className="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -61,6 +61,13 @@ export default function Cta() {
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-xs text-ash-500">
+                <a
+                  href={site.contact.phoneHref}
+                  className="transition-colors hover:text-brand-300"
+                >
+                  {site.contact.phone}
+                </a>
+                <span className="hidden h-3 w-px bg-white/10 sm:block" />
                 <span>{site.contact.hours}</span>
                 <span className="hidden h-3 w-px bg-white/10 sm:block" />
                 <span>Free 30-minute consultation</span>

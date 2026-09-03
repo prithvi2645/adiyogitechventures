@@ -666,6 +666,32 @@ body {
   }
 }
 
+/* ---------- Trishul drift ---------- */
+
+/* A rare, slow crossing - fades in, drifts the width of the viewport with a
+   light tumble, fades out before it reaches the far edge. */
+@keyframes trishul-drift {
+  0% {
+    transform: translateX(0) rotate(calc(var(--drift-rotate) * -1));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--drift-x)) rotate(var(--drift-rotate));
+    opacity: 0;
+  }
+}
+
+.trishul-drift {
+  animation: trishul-drift linear both;
+  will-change: transform, opacity;
+}
+
 /* ---------- Progress rider ---------- */
 
 /* A gentle bob so the trishul feels carried by the line, not pinned to it. */

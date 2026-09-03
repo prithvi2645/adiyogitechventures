@@ -73,9 +73,6 @@ export default function Process() {
                           ].join(" ")}
                         >
                           <span className="rounded-full border border-brand-500/25 bg-brand-500/10 px-3 py-1 text-brand-300">
-                            {step.duration}
-                          </span>
-                          <span className="rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1 text-ash-400">
                             {step.deliverable}
                           </span>
                         </div>

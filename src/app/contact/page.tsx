@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import { Container, Section } from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
@@ -57,6 +57,42 @@ export default function ContactPage() {
                           <span className="block text-xs text-ash-500">Email</span>
                           <span className="text-ash-100 transition-colors group-hover:text-brand-300">
                             {site.contact.email}
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={site.contact.phoneHref}
+                        className="group flex items-start gap-4"
+                      >
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-brand-500/25 bg-brand-500/10">
+                          <Phone className="h-4 w-4 text-brand-300" />
+                        </span>
+                        <span>
+                          <span className="block text-xs text-ash-500">Phone</span>
+                          <span className="text-ash-100 transition-colors group-hover:text-brand-300">
+                            {site.contact.phone}
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={site.contact.whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start gap-4"
+                      >
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.03]">
+                          <MessageCircle className="h-4 w-4 text-ash-400" />
+                        </span>
+                        <span>
+                          <span className="block text-xs text-ash-500">
+                            WhatsApp
+                          </span>
+                          <span className="text-ash-200 transition-colors group-hover:text-brand-300">
+                            Message us
                           </span>
                         </span>
                       </a>

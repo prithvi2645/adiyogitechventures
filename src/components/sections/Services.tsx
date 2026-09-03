@@ -98,7 +98,6 @@ export default function Services() {
                             "Quoted per project"
                           )}
                         </span>
-                        <span className="text-ash-500">{service.timeline}</span>
                       </div>
                     </div>
                   </Link>

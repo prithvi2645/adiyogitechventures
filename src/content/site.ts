@@ -63,9 +63,11 @@ export const site = {
 
   contact: {
     email: "adiyogitechventures@gmail.com",
-    // No phone or WhatsApp until there is a real business number to publish.
-    // Adding them back means restoring `phone`, `phoneHref` and `whatsapp`
-    // here and un-hiding the blocks in Header, Footer, Cta and /contact.
+    /** Display form. India, so grouped the way it is read aloud locally. */
+    phone: "+91 63625 58434",
+    /** E.164, for tel: and WhatsApp links - no spaces, no punctuation. */
+    phoneHref: "tel:+916362558434",
+    whatsapp: "https://wa.me/916362558434",
     address: "Bengaluru, Karnataka, India",
     hours: "Mon - Sat, 10:00 - 19:00 IST",
   },

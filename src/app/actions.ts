@@ -49,7 +49,6 @@ function buildEmailHtml(data: ContactInput) {
       ${row("Company", data.company || undefined)}
       ${row("Service", data.service)}
       ${row("Budget", data.budget || undefined)}
-      ${row("Timeline", data.timeline || undefined)}
     </table>
     <div style="padding:18px 24px;">
       <div style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">Message</div>
