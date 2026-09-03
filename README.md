@@ -4,7 +4,8 @@ Marketing and lead-generation website for a web & app development studio.
 Built with [Next.js 15](https://nextjs.org) (App Router), TypeScript and
 Tailwind CSS v4.
 
-**Live site:** [adiyogitechventures.com](https://adiyogitechventures.com)
+**Live site:** [adiyogitechventures.vercel.app
+](https://adiyogitechventures.vercel.app)
 
 ## Quick start
 
