@@ -13,9 +13,9 @@ type Pass = {
 
 /**
  * A single trishul that drifts slowly across the void every so often -
- * a rare, deliberate presence rather than a repeating loop. Position,
- * side, tilt and speed are randomised per pass so it never reads as
- * mechanical. Idle 20-45s between passes, on screen 30-46s.
+ * a deliberate presence rather than a repeating loop. Position, side,
+ * tilt and speed are randomised per pass so it never reads as
+ * mechanical. Idle 6-14s between passes, on screen 30-46s.
  */
 export default function TrishulDrift() {
   const [pass, setPass] = useState<Pass | null>(null);
@@ -43,12 +43,12 @@ export default function TrishulDrift() {
           () => {
             if (!cancelled) cycle();
           },
-          22000 + Math.random() * 28000,
+          6000 + Math.random() * 8000,
         );
       }, duration * 1000);
     };
 
-    timer = setTimeout(cycle, 9000 + Math.random() * 12000);
+    timer = setTimeout(cycle, 2000 + Math.random() * 3000);
 
     return () => {
       cancelled = true;
