@@ -1,11 +1,14 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Compact trishul with a damru bound to the shaft - the classic Shaiva pairing.
+ * Compact trishul with a damru bound to the shaft - the classic Shaiva
+ * pairing. Used as the header's mobile-nav icon and as the custom cursor.
  *
  * Drawn solid rather than stroked (unlike the large decorative Trishul in
  * background/Yantra.tsx) so it stays legible at 20-24px, where hairline strokes
  * disappear. Optical centre sits at x=16 so callers can translate by -50%.
+ * The bead group is a separate <g id="damru-beads"> so the cursor component
+ * can swing it with the pointer's horizontal velocity.
  */
 export function TrishulDamru({ className }: { className?: string }) {
   return (
@@ -54,70 +57,18 @@ export function TrishulDamru({ className }: { className?: string }) {
         <path d="M10.6 19.6v5.6l4 -2.1v-1.4z" fill="url(#td-drum)" />
         <path d="M21.4 19.6v5.6l-4 -2.1v-1.4z" fill="url(#td-drum)" />
         <rect x="14.6" y="21.1" width="2.8" height="2" rx="0.4" fill="#eafbf9" />
-        {/* Strings and striker beads */}
-        <path
-          d="M16 23.1c-.9 1.7 -2 2.6 -3.2 2.9M16 23.1c.9 1.7 2 2.6 3.2 2.9"
-          stroke="#93e7e0"
-          strokeWidth="0.7"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <circle cx="12.5" cy="26.2" r="1" fill="#eafbf9" />
-        <circle cx="19.5" cy="26.2" r="1" fill="#eafbf9" />
-      </g>
-    </svg>
-  );
-}
-
-/**
- * Damru on its own, used as the custom cursor.
- * The bead group is a separate <g id="damru-beads"> so the cursor component can
- * swing it with the pointer's horizontal velocity.
- */
-export function Damru({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      aria-hidden="true"
-      focusable="false"
-      className={cn("overflow-visible", className)}
-    >
-      <defs>
-        <linearGradient id="dm-body" x1="0" y1="0" x2="0.3" y2="1">
-          <stop offset="0%" stopColor="#eafbf9" />
-          <stop offset="55%" stopColor="#59d7cd" />
-          <stop offset="100%" stopColor="#168da1" />
-        </linearGradient>
-      </defs>
-
-      {/* Left and right drum cones, apex to apex */}
-      <path d="M3.6 6.5v19l9.6 -6.2v-6.6z" fill="url(#dm-body)" />
-      <path d="M28.4 6.5v19l-9.6 -6.2v-6.6z" fill="url(#dm-body)" />
-
-      {/* Waist band */}
-      <rect x="12.9" y="12.4" width="6.2" height="7.2" rx="1" fill="#c9f4ef" />
-      <rect x="15.2" y="12.4" width="1.6" height="7.2" fill="#93e7e0" opacity="0.7" />
-
-      {/* Strings and striker beads - swung by the cursor component */}
-      <g id="damru-beads">
-        <path
-          d="M16 19.6c-1.4 2.4 -3.1 3.6 -5.1 3.9"
-          stroke="#93e7e0"
-          strokeWidth="0.9"
-          strokeLinecap="round"
-          fill="none"
-          opacity="0.85"
-        />
-        <path
-          d="M16 19.6c1.4 2.4 3.1 3.6 5.1 3.9"
-          stroke="#93e7e0"
-          strokeWidth="0.9"
-          strokeLinecap="round"
-          fill="none"
-          opacity="0.85"
-        />
-        <circle cx="10.4" cy="23.8" r="1.5" fill="#eafbf9" />
-        <circle cx="21.6" cy="23.8" r="1.5" fill="#eafbf9" />
+        {/* Strings and striker beads - swung by the cursor component */}
+        <g id="damru-beads">
+          <path
+            d="M16 23.1c-.9 1.7 -2 2.6 -3.2 2.9M16 23.1c.9 1.7 2 2.6 3.2 2.9"
+            stroke="#93e7e0"
+            strokeWidth="0.7"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle cx="12.5" cy="26.2" r="1" fill="#eafbf9" />
+          <circle cx="19.5" cy="26.2" r="1" fill="#eafbf9" />
+        </g>
       </g>
     </svg>
   );

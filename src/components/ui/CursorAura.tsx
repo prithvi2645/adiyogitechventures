@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Damru } from "./SacredIcons";
+import { TrishulDamru } from "./SacredIcons";
 
 /** Elements that should feel "grabbable" - the damru grows over these. */
 const INTERACTIVE = 'a,button,[role="button"],summary,label,select,[data-cursor="grow"]';
@@ -9,13 +9,13 @@ const INTERACTIVE = 'a,button,[role="button"],summary,label,select,[data-cursor=
 const TEXT_FIELD = "input,textarea,[contenteditable='true']";
 
 /**
- * Damru cursor with a trailing aura.
+ * Trishul-and-damru cursor with a trailing aura.
  *
  * Three layers, each easing at a different rate so the whole thing feels
  * weighted rather than glued to the pointer:
  *   - a wide soft aura that lags well behind (the "cursor light")
- *   - the damru itself, following closely
- *   - the striker beads, swung by horizontal pointer velocity
+ *   - the mark itself, following closely
+ *   - the damru's striker beads, swung by horizontal pointer velocity
  *
  * Safety rails, because replacing the system cursor is a real usability cost:
  *   - only runs on a fine pointer (never touch) and never under reduced motion
@@ -157,7 +157,7 @@ export default function CursorAura() {
         aria-hidden="true"
         className="damru-cursor pointer-events-none fixed left-0 top-0 z-[100] h-[26px] w-[26px] opacity-0 transition-opacity duration-300 will-change-transform"
       >
-        <Damru className="h-full w-full drop-shadow-[0_0_6px_rgba(52,187,182,0.85)]" />
+        <TrishulDamru className="h-full w-full drop-shadow-[0_0_6px_rgba(52,187,182,0.85)]" />
       </div>
     </>
   );

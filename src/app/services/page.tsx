@@ -87,21 +87,6 @@ export default function ServicesPage() {
                               {service.startingAt ?? "Quoted per project"}
                             </dd>
                           </div>
-                          <div>
-                            <dt className="mb-2 text-xs uppercase tracking-wider text-ash-500">
-                              Stack
-                            </dt>
-                            <dd className="flex flex-wrap gap-1.5">
-                              {service.stack.map((t) => (
-                                <span
-                                  key={t}
-                                  className="rounded-full border border-white/[0.07] bg-white/[0.03] px-2.5 py-1 text-[10px] text-ash-400"
-                                >
-                                  {t}
-                                </span>
-                              ))}
-                            </dd>
-                          </div>
                         </dl>
 
                         <div className="mt-6 grid grid-cols-3 gap-2 border-t border-white/[0.06] pt-5">

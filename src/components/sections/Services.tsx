@@ -73,32 +73,19 @@ export default function Services() {
                       {service.short}
                     </p>
 
-                    <div className="mt-auto space-y-4">
-                      <div className="flex flex-wrap gap-1.5">
-                        {service.stack.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className="rounded-full border border-white/[0.07] bg-white/[0.03] px-2.5 py-1 text-[10px] text-ash-400"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center justify-between border-t border-white/[0.06] pt-4 text-xs">
-                        <span className="text-ash-500">
-                          {service.startingAt ? (
-                            <>
-                              From{" "}
-                              <span className="text-ash-200">
-                                {service.startingAt}
-                              </span>
-                            </>
-                          ) : (
-                            "Quoted per project"
-                          )}
-                        </span>
-                      </div>
+                    <div className="mt-auto flex items-center justify-between border-t border-white/[0.06] pt-4 text-xs">
+                      <span className="text-ash-500">
+                        {service.startingAt ? (
+                          <>
+                            From{" "}
+                            <span className="text-ash-200">
+                              {service.startingAt}
+                            </span>
+                          </>
+                        ) : (
+                          "Quoted per project"
+                        )}
+                      </span>
                     </div>
                   </Link>
                 </Spotlight>
