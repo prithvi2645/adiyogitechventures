@@ -25,6 +25,18 @@ export type Project = {
   result: string;
   services: string[];
   stack: string[];
+  /**
+   * Optional link to the running product. Renders a "View live site" button on
+   * the case study when set, and nothing at all when omitted - not every piece
+   * of work stays online, and a dead link is worse than no link.
+   */
+  liveUrl?: string;
+  /**
+   * Substantiated outcome figures. May be left empty: the metrics band and the
+   * card's figure grid both hide themselves rather than render blank boxes, so
+   * a case study can be published before the numbers are measured. Do not fill
+   * this with estimates to make the layout look complete.
+   */
   metrics: { label: string; value: string }[];
   /** Hex colour used for the card wash and metric figures, e.g. "#34BBB6". */
   accent: string;

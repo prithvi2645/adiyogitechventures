@@ -91,21 +91,23 @@ export default function WorkPage() {
                       {project.summary}
                     </p>
 
-                    <div className="mb-6 grid grid-cols-3 gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
-                      {project.metrics.map((m) => (
-                        <div key={m.label}>
-                          <div
-                            className="font-display text-xl"
-                            style={{ color: project.accent }}
-                          >
-                            {m.value}
+                    {project.metrics.length > 0 ? (
+                      <div className="mb-6 grid grid-cols-3 gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
+                        {project.metrics.map((m) => (
+                          <div key={m.label}>
+                            <div
+                              className="font-display text-xl"
+                              style={{ color: project.accent }}
+                            >
+                              {m.value}
+                            </div>
+                            <div className="mt-0.5 text-[9px] uppercase tracking-wide text-ash-500">
+                              {m.label}
+                            </div>
                           </div>
-                          <div className="mt-0.5 text-[9px] uppercase tracking-wide text-ash-500">
-                            {m.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    ) : null}
 
                     <span className="mt-auto inline-flex items-center gap-2 text-sm text-brand-300">
                       Read case study

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import { Container, Section } from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import Cta from "@/components/sections/Cta";
 import { projects, getProject } from "@/content/projects";
 import { site } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -66,27 +67,30 @@ export default async function ProjectPage({ params }: Params) {
 
       <Section className="pt-0">
         <Container>
-          {/* Metrics band */}
-          <Reveal>
-            <div className="glass grid grid-cols-1 gap-px overflow-hidden rounded-3xl sm:grid-cols-3">
-              {project.metrics.map((m) => (
-                <div
-                  key={m.label}
-                  className="bg-white/[0.015] px-8 py-10 text-center"
-                >
+          {/* Metrics band. Hidden entirely when a project has no measured
+              figures yet, rather than rendering empty panels. */}
+          {project.metrics.length > 0 ? (
+            <Reveal>
+              <div className="glass grid grid-cols-1 gap-px overflow-hidden rounded-3xl sm:grid-cols-3">
+                {project.metrics.map((m) => (
                   <div
-                    className="font-display text-4xl sm:text-5xl"
-                    style={{ color: project.accent }}
+                    key={m.label}
+                    className="bg-white/[0.015] px-8 py-10 text-center"
                   >
-                    {m.value}
+                    <div
+                      className="font-display text-4xl sm:text-5xl"
+                      style={{ color: project.accent }}
+                    >
+                      {m.value}
+                    </div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.16em] text-ash-500">
+                      {m.label}
+                    </div>
                   </div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-ash-500">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          ) : null}
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
             <div className="space-y-6">
@@ -155,9 +159,24 @@ export default async function ProjectPage({ params }: Params) {
                     </div>
                   </dl>
 
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost group mt-8 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm text-ash-100"
+                    >
+                      View live site
+                      <ExternalLink className="h-4 w-4 text-brand-400 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  ) : null}
+
                   <Link
                     href="/contact"
-                    className="btn-sacred group mt-8 flex w-full items-center justify-center gap-2 rounded-full py-4 text-sm font-medium text-white"
+                    className={cn(
+                      "btn-sacred group flex w-full items-center justify-center gap-2 rounded-full py-4 text-sm font-medium text-white",
+                      project.liveUrl ? "mt-3" : "mt-8",
+                    )}
                   >
                     Build something like this
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
